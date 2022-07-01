@@ -26,6 +26,11 @@ let data = [
 
 app.use(express.json())
 
+app.set("view engine", "ejs")
+
+app.get("/info", (request, response) => {
+    response.render("info.ejs", {count: data.length, date: new Date().toString()})
+})
 app.get("/api/persons", (request, response)=> {
     response.json(data)
 })
