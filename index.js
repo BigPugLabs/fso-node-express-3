@@ -49,17 +49,21 @@ app.get("/api/persons/:id", (request, response) => {
 })
 
 app.post("/api/persons", (request, response) => {
-  if (!request.body.name || !request.body.number) {
-    response.status(400).json({error:"needs both name and number"})
+  if (!request.body.name) {
+    response.status(400).json({ error: "needs name" })
+  } else if (!request.body.number) {
+    response.status(400).json({ error: "needs number" })
+  } else if (data.some(e=>e.name == request.body.name)) {
+    response.status(400).json({ error: "name must be unique" })
   } else {
-    const newEntry = {id:Math.floor(Math.random()*65535),name:request.body.name, number:request.body.number}
+    const newEntry = { id: Math.floor(Math.random() * 65535), name: request.body.name, number: request.body.number }
     data.push(newEntry)
     response.json(newEntry)
   }
 })
 
 app.delete("/api/persons/:id", (request, response) => {
-  data=data.filter(e=>e.id!=request.params.id)
+  data = data.filter(e => e.id != request.params.id)
   response.sendStatus(204)
 })
 
