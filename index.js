@@ -47,6 +47,17 @@ app.get("/api/persons/:id", (request, response) => {
     }
   })
 })
+
+app.post("/api/persons", (request, response) => {
+  if (!request.body.name || !request.body.number) {
+    response.status(400).json({error:"needs both name and number"})
+  } else {
+    const newEntry = {id:Math.floor(Math.random()*65535),name:request.body.name, number:request.body.number}
+    data.push(newEntry)
+    response.json(newEntry)
+  }
+})
+
 app.delete("/api/persons/:id", (request, response) => {
   data=data.filter(e=>e.id!=request.params.id)
   response.sendStatus(204)
