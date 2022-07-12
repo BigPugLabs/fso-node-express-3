@@ -26,8 +26,10 @@ let data = [
   }
 ]
 
+morgan.token("body", (req, res) => req.method == "POST" ? `{"name":"${req.body.name}","number":"${req.body.number}"}` : "")
+
 app.use(express.json())
-app.use(morgan("tiny"))
+app.use(morgan(':method :url :status :res[content-length] - :response-time ms :body'))
 
 app.set("view engine", "ejs")
 
@@ -55,7 +57,7 @@ app.post("/api/persons", (request, response) => {
     response.status(400).json({ error: "needs name" })
   } else if (!request.body.number) {
     response.status(400).json({ error: "needs number" })
-  } else if (data.some(e=>e.name == request.body.name)) {
+  } else if (data.some(e => e.name == request.body.name)) {
     response.status(400).json({ error: "name must be unique" })
   } else {
     const newEntry = { id: Math.floor(Math.random() * 65535), name: request.body.name, number: request.body.number }
