@@ -1,5 +1,6 @@
 const express = require('express')
 const figlet = require('figlet')
+const morgan = require('morgan')
 const app = express()
 
 let data = [
@@ -26,6 +27,7 @@ let data = [
 ]
 
 app.use(express.json())
+app.use(morgan("tiny"))
 
 app.set("view engine", "ejs")
 
