@@ -75,3 +75,5 @@ const PORT = 3001
 app.listen(PORT, () => {
   console.log(`Server running on ${PORT}`)
 })
+
+module.exports = app // for testing
