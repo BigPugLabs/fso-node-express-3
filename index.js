@@ -72,8 +72,10 @@ app.delete("/api/persons/:id", (request, response) => {
 })
 
 const PORT = 3001
-app.listen(PORT, () => {
-  console.log(`Server running on ${PORT}`)
-})
+// app.listen(PORT, () => {
+//   console.log(`Server running on ${PORT}`)
+// })
 
-module.exports = app // for testing
+module.exports = app.listen(PORT, () => {
+  console.log(`Server running on ${PORT}`)
+}) // for testing
