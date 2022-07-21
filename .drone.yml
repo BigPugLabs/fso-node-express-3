@@ -10,7 +10,7 @@ steps:
   - npm test
 
 - name: publish
-  image: banzaicloud/drone-kaniko
+  image: plugins/kaniko
   settings:
     registry: trow-svc.trow.svc.cluster.local:8000
     repo: trow-svc.trow.svc.cluster.local:8000/fso-node-express-3
