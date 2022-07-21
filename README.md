@@ -3,3 +3,8 @@
 # fso-node-express-3
 
 A simple phonebook API sample
+
+##
+
+Using drone CI to run mocha/chai/chai-http tests and build a container.
+This is pushing to trow, an internal kubernetes container registry.
