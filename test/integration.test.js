@@ -34,7 +34,6 @@ describe("GET requests", () => {
             .request(app)
             .get("/info")
             .end((err, res) => {
-                //console.log("info HIHIIHIH", res.text)
                 assert.equal(res.statusCode, 200)
                 assert.isString(res.text, "meant to stringy data (Hopefully HTML)")
                 assert.include(res.text, "PhoneBook has info for 4 people")
